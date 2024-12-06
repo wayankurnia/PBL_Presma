@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPRESMA Dashboard</title>
+    <link rel="stylesheet" href="CSS/StyleTambahData.css">
+</head>
+    <body>
+      <div class="container">
+          <main class="content">
+          <h1>Tambah Data</h1>
+          <form class="form">
+            <!-- Data Mahasiswa -->
+            <fieldset>
+              <legend>Data Mahasiswa</legend>
+              <label for="nama">Nama Lengkap</label>
+              <input type="text" id="nama" class="form-control">
+              <label for="program-studi">Program Studi</label>
+              <select name="program-studi" class="form-control">
+                <option value="TI">Teknik Infimatika</option>
+                <option value="SIB">Sistem Informasi Bisnis</option>
+                <option value="PPLS">Pengembangan Piranti Lunak Situs</option>
+              </select>
+            </fieldset>
+      
+            <!-- Data Pembimbing -->
+            <fieldset>
+              <legend>Data Pembimbing</legend>
+              <label for="dosen">Dosen Pembimbing</label>
+              <input type="text" id="dosen" class="form-control">
+              <label for="peran-pembimbing">Peran Pembimbing</label>
+              <input type="text" id="peran-pembimbing" class="form-control">
+            </fieldset>
+      
+            <!-- Data Prestasi -->
+            <fieldset>
+              <legend>Data Prestasi</legend>
+              <label for="peran">Peran</label>
+              <select name="peran" class="form-control">
+                <option value="Ketua">Ketua</option>
+                <option value="Anggota">Anggota</option>
+                <option value="Personal">Personal</option>
+              </select>
+              <label for="jenis-kompetisi">Jenis Kompetisi</label>
+              <input type="text" id="jenis-kompetisi" class="form-control">
+              <label for="tingkat-kompetisi">Tingkat Kompetisi</label>
+              <select name="program-studi" class="form-control">
+                <option value="kabupaten">Kabupaten</option>
+                <option value="provinsi">Provinsi</option>
+                <option value="nasional">Nasional</option>
+                <option value="internasional">Internasional</option>
+              </select>
+            </select>
+              <label for="nama-kompetisi">Nama Kompetisi</label>
+              <input type="text" id="nama-kompetisi" class="form-control">
+              <label for="tanggal-mulai">Tanggal Mulai</label>
+              <input type="date" id="tanggal-mulai" class="form-control">
+              <label for="tanggal-selesai">Tanggal Selesai</label>
+              <input type="date" id="tanggal-selesai" class="form-control">
+              <label for="form-upload">Foto Kegiatan</label>
+              <div class="file-box">
+                <input type="file" name="foto-kegiatan" id="form-upload">
+                <span class="file-label" onclick="document.getElementById('form-upload').click();">Pilih File</span>
+              </div>
+              <label for="form-upload">File Poster</label>
+              <div class="file-box">
+                <input type="file" name="file-poster" id="form-upload" class="form-upload">
+                <span class="file-label" onclick="document.getElementById('form-upload').click();" >Pilih File</span>
+              </div>
+              <!-- Add more fields as needed -->
+            </fieldset>
+      
+            <div class="form-buttons">
+              <button type="submit" class="btn btn-primary" onclick="showSuccessMessage(event)">Simpan</button>
+              <button type="reset" class="btn btn-primary"  onclick="window.location.href='dashboardMahasiswa.html';">Kembali</button>
+            </div>
+            <div id="success-message" class="success-message" style="display: none;">
+              Data Berhasil diunggah!
+            </div>
+          </form>
+        </main>
+      </div>
+    </body>
+  </head>
+</html>
+
+      
+ 

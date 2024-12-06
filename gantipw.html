@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganti Password</title>
+    <link rel="stylesheet" href="CSS/gantipw.css">
+</head>
+
+</head>
+<body>
+    <div class="container">
+        <img src="gambar/jti.png" class="logo" alt="Logo JTI">
+        <h1>Ganti Password Anda</h1>
+
+        <form id="password-form" onsubmit="return validatePassword()">
+            <div class="form-group">
+                <label for="old-password">Password Lama</label>
+                <input type="password" id="old-password" name="old-password" placeholder="Masukkan Password Lama" required>
+            </div>
+            <div class="form-group">
+                <label for="new-password">Password Baru</label>
+                <input type="password" id="new-password" name="new-password" placeholder="Masukkan Password Baru" required>
+            </div>
+            <div class="form-group">
+                <label for="repeat-password">Ulangi Password Anda</label>
+                <input type="password" id="repeat-password" name="repeat-password" placeholder="Masukkan Ulang Password" required>
+                <p id="error-message" class="error" style="display: none;">Password tidak cocok!</p>
+            </div>
+
+            <div class="buttons">
+                <button type="submit">SIMPAN</button>
+                <button type="button" onclick="history.back()">KEMBALI</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validatePassword() {
+            const newPassword = document.getElementById("new-password").value;
+            const repeatPassword = document.getElementById("repeat-password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (newPassword !== repeatPassword) {
+                errorMessage.style.display = "block";
+                return false; // Menghentikan pengiriman form
+            } else {
+                errorMessage.style.display = "none";
+                return true; // Mengizinkan pengiriman form
+            }
+        }
+    </script>
+</body>
+</html>

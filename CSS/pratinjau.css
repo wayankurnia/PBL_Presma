@@ -1,0 +1,91 @@
+
+        /* Tambahkan styling langsung untuk keperluan demo */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            padding: 20px;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar img {
+            width: 100px;
+            border-radius: 50%;
+            display: block;
+            margin: 20px auto;
+        }
+        .sidebar h3, .sidebar p {
+            text-align: center;
+            margin: 5px 0;
+        }
+        .sidebar .menu-link {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .sidebar .menu-link:hover {
+            background-color: #555;
+        }
+        .container {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .data-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .data-box h1 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .data-section {
+            margin: 20px 0;
+        }
+        .data-section h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        .data-label {
+            font-weight: bold;
+        }
+        .data-value {
+            text-align: right;
+            color: #555;
+        }
+        .verify-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .verify-button:hover {
+            background-color: #0056b3;
+        }

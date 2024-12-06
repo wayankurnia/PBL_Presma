@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-bottom: 2px solid #ddd;
+}
+
+.logos img {
+    width: 80px;
+    height: auto;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+    flex-grow: 1;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #e0f0ff;
+}
+
+.section-title {
+    text-align: center;
+    margin: 30px auto;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.competition-section {
+    background-color: #FFD700;
+    padding: 20px;
+    text-align: center;
+}
+
+.competition-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.competition-items {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.competition-item {
+    background-color: #007BFF;
+    color: white;
+    width: 120px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.login-section {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.login-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
