@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data</title>
+    <link rel="stylesheet" href="StyleTambahData.css">
+    <script>
+      function showFileName(input, labelId) {
+            const fileName = input.files.length ? input.files[0].name : "Pilih File";
+            document.getElementById(labelId).textContent = fileName;
+        }
+        function showSuccessMessage(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            document.getElementById("success-message").style.display = "block"; // Show success message
+            setTimeout(() => {
+                document.getElementById("success-message").style.display = "none"; // Hide success message after 3 seconds
+            }, 3000);
+        }
+    </script>
+</head>
+    <body>
+      <div class="container">
+          <main class="content">
+          <h1>Tambah Data</h1>
+            <!-- Data Mahasiswa -->
+            <fieldset>
+              <legend>Data Mahasiswa</legend>
+              <label for="name">Nama Lengkap</label>
+              <input type="text" id="name" class="form-control">
+              <label for="program-studi">Program Studi</label>
+              <select name="program-studi" class="form-control">
+                <option value="TI">Teknik Infimatika</option>
+                <option value="SIB">Sistem Informasi Bisnis</option>
+                <option value="PPLS">Pengembangan Piranti Lunak Situs</option>
+              </select>
+            </fieldset>
+      
+            <!-- Data Pembimbing -->
+            <fieldset>
+              <legend>Data Pembimbing</legend>
+              <label for="dosen">Dosen Pembimbing</label>
+              <input type="text" id="dosen" class="form-control">
+              <label for="peran-pembimbing">Peran Pembimbing</label>
+              <input type="text" id="peran-pembimbing" class="form-control">
+            </fieldset>
+      
+            <!-- Data Prestasi -->
+            <fieldset>
+              <legend>Data Prestasi</legend>
+              <label for="peran">Peran</label>
+              <select name="peran" class="form-control">
+                <option value="Ketua">Ketua</option>
+                <option value="Anggota">Anggota</option>
+                <option value="Personal">Personal</option>
+              </select>
+              <label for="jenis-kompetisi">Jenis Kompetisi</label>
+              <input type="text" id="jenis-kompetisi" class="form-control">
+              <label for="jenis-kompetisi">Juara</label>
+              <input type="text" id="jenis-kompetisi" class="form-control">
+              <label for="tingkat-kompetisi">Tingkat Kompetisi</label>
+              <select name="program-studi" class="form-control">
+                <option value="kabupaten">Kabupaten / Kota</option>
+                <option value="provinsi">Provinsi</option>
+                <option value="nasional">Nasional</option>
+                <option value="internasional">Internasional</option>
+              </select>
+              <label for="url-kompetisi">URL Kompetisi</label>
+              <input type="text" id="url-kompetisi" class="form-control">
+              <label for="nama-kompetisi">Nama Kompetisi</label>
+              <input type="text" id="nama-kompetisi" class="form-control">
+              <label for="nomor-surat">Nomor Surat</label>
+              <input type="text" id="nomor-surat" class="form-control">
+              <label for="form-upload-sertifikat">File Sertifikat</label>
+              <div class="file-box">
+                  <input 
+                      type="file" 
+                      name="file-sertifikat" 
+                      id="form-upload-sertifikat" 
+                      class="form-upload" 
+                      onchange="showFileName(this, 'file-sertifikat-label')">
+                  <span 
+                      class="file-label" 
+                      onclick="document.getElementById('form-upload-sertifikat').click();">Pilih File</span>
+                  <span id="file-sertifikat-label">Belum ada file dipilih</span>
+              </div>
+              
+              <label for="form-upload-surat-tugas">File Surat Tugas</label>
+              <div class="file-box">
+                  <input 
+                      type="file" 
+                      name="file-surat-tugas" 
+                      id="form-upload-surat-tugas" 
+                      class="form-upload" 
+                      onchange="showFileName(this, 'file-surat-tugas-label')">
+                  <span 
+                      class="file-label" 
+                      onclick="document.getElementById('form-upload-surat-tugas').click();">Pilih File</span>
+                  <span id="file-surat-tugas-label">Belum ada file dipilih</span>
+              </div>
+              
+              <label for="nama-kompetisi">Tanggal Surat</label>
+              <input type="date" id="tanggal-surat" class="form-control">
+              <label for="tanggal-mulai">Tanggal Mulai</label>
+              <input type="date" id="tanggal-mulai" class="form-control">
+              <label for="tanggal-selesai">Tanggal Selesai</label>
+              <input type="date" id="tanggal-selesai" class="form-control">
+              <label for="form-upload">Foto Kegiatan</label>
+              <div class="file-box">
+                <input type="file" name="foto-kegiatan" id="form-upload" class="form-upload" onchange="showFileName(this, 'foto-kegiatan-label')">
+                <span class="file-label" onclick="document.getElementById('form-upload').click();">Pilih File</span>
+                <span id="foto-kegiatan-label">Belum ada file dipilih</span>
+              </div>
+              <label for="form-upload">File Poster</label>
+              <div class="file-box">
+                <input type="file" name="file-poster" id="form-upload" class="form-upload" onchange="showFileName(this, 'file-poster-label')">
+                <span class="file-label" onclick="document.getElementById('form-upload').click();">Pilih File</span>
+                <span id="file-poster">Belum ada file dipiliih</span>
+              </div>
+              <!-- Add more fields as needed -->
+            </fieldset>
+      
+            <div class="form-buttons">
+              <button type="submit" class="btn btn-primary" onclick="showSuccessMessage(event)">Kirim</button>
+              <button type="reset" class="btn btn-primary"  onclick="window.location.href='dashboardMahasiswa.html';">Kembali</button>
+            </div>
+            <div id="success-message" class="success-message" style="display: none;">
+              Data Berhasil diunggah!
+            </div>
+        </main>
+      </div>
+    </body>
+  </head>
+</html>
+
+      
+ 
