@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIPRESMA Dashboard</title>
-    <link rel="stylesheet" href="CSS/StyleDashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/dashboardMahasiswa.css">
 </head>
     <body>
             <!-- Sidebar -->
@@ -30,17 +31,17 @@
                          <div class="info-box">
                         <div class="cards-container">
                             <div class="card">
-                                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Trophy Icon">
+                                <i class="fas fa-trophy"></i>
                                 <h4>12</h4>
                                 <p>Peringkat</p>
                             </div>
                             <div class="card">
-                                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Graduation Icon">
-                                <h4>0</h4>
+                                <i class="fas fa-graduation-cap"></i>
+                                <h4>7</h4>
                                 <p>Jumlah Prestasi</p>
                             </div>
                             <div class="card">
-                                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Shield Icon">
+                                <i class="fas fa-shield-alt"></i>
                                 <h4>57</h4>
                                 <p>Poin</p>
                                 </div>
@@ -50,16 +51,58 @@
                         <h3>Riwayat Prestasi Mahasiswa</h3>
                         <input type="text" placeholder="Search..." class="search-bar">
                     </div>
-                    <div class="info-box-2">
-                        <p>Selamat Datang, Syaqira!<br>Anda Belum memiliki riwayat Prestasi</p>
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                          <div class="row">
+                            <div class="table-responsive">
+                                    <table class="table">
+                                      <thead>
+                                        <tr>
+                                          <th>Nama Kompetisi</th>
+                                          <th>Jenis Kompetisi</th>
+                                          <th>Tanggal</th>
+                                          <th>Status</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>Pengembangan Aplikasi</td>
+                                          <td>GEMASTIK</td>
+                                          <td>12 May 2023</td>
+                                          <td><label class="badge badge-danger">Ditolak</label></td>
+                                        </tr>
+                                        <tr>
+                                          <td>Cipta Inovasi Bidang TI</td>
+                                          <td>KMIPN</td>
+                                          <td>15 May 2017</td>
+                                          <td><label class="badge badge-warning">Proses</label></td>
+                                        </tr>
+                                        <tr>
+                                          <td>Smart City</td>
+                                          <td>PKM</td>
+                                          <td>14 May 2017</td>
+                                          <td><label class="badge badge-success">Terverifikasi</label></td>
+                                        </tr>
+                                        <tr>
+                                          <td>UI/UX</td>
+                                          <td>KMIPN</td>
+                                          <td>16 May 2022</td>
+                                          <td><label class="badge badge-success">Terverifikasi</label></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                     </div>
-                    </div>
-                    </div>
-                </div>
             </div>
-            </div>
-           
-        </main>
+        </div>
     </div>
+ </div>
+</div>
+</div>
+</main>
+</div>
 </body>
 </html>

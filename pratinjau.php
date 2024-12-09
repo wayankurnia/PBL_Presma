@@ -40,7 +40,6 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="CSS/pratinjau.css">
 </head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar">
         <h2>SIPRESMA</h2>
         <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
@@ -51,7 +50,6 @@ if (isset($_GET['id'])) {
         <a href="login.html" class="menu-link">Keluar</a>
     </div>
 
-    <!-- Main Content -->
     <div class="container">
         <main class="content">
             <h1>Pratinjau Data Prestasi</h1>
@@ -105,21 +103,16 @@ if (isset($_GET['id'])) {
                     <span class="data-label">Tanggal Selesai:</span>
                     <span class="data-value"><?php echo htmlspecialchars($data['tanggal_selesai']); ?></span>
                 </div>
-                <div class="data-row">
-                    <span class="data-label">Status:</span>
-                    <span class="data-value"><?php echo htmlspecialchars($data['status']); ?></span>
-                </div>
             </fieldset>
 
-            <button class="btn btn-success" onclick="window.location.href='verifikasi.php?id=<?php echo $id; ?>';">Verifikasi Data</button>
-            <button class="btn btn-danger" onclick="window.location.href='dashboardSuperadmin.php';">Kembali</button>
+            <!-- Tombol Verifikasi -->
+            <div class="action-buttons">
+                <form action="verifikasi.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                    <button type="submit" class="btn btn-success">Verifikasi</button>
+                </form>
+            </div>
         </main>
     </div>
 </body>
 </html>
-
-<?php
-// Tutup koneksi
-$stmt->close();
-$conn->close();
-?>

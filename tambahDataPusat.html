@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Pusat</title>
+    <link rel="stylesheet" href="CSS/tambahDataPusat.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>SIPRESMA</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
+        <h3>Vit Zuraida, S.Kom., M.Kom.</h3>
+        <p>SuperAdmin</p>
+        <button class="btn btn-primary" onclick="window.location.href='dashboardSuperadmin.php';">Dashboard</button>
+        <a href="tambahDataPusat.html" class="menu-link active">Tambah Data</a>
+        <a href="gantipw.html" class="menu-link">Edit Password</a>
+        <a href="login.html" class="menu-link">Keluar</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main class="content">
+            <h1>Tambah Data Dosen dan Mahasiswa</h1>
+            <form>
+                <fieldset>
+                    <legend>Data Dosen</legend>
+                    <label for="nama_dosen">Nama Dosen:</label>
+                    <input type="text" id="nama_dosen" name="nama_dosen" required>
+                    <label for="nip">NIP:</label>
+                    <input type="text" id="nip" name="nip" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Data Mahasiswa</legend>
+                    <label for="nama_mahasiswa">Nama Mahasiswa:</label>
+                    <input type="text" id="nama_mahasiswa" name="nama_mahasiswa" required>
+                    <label for="nim">NIM:</label>
+                    <input type="text" id="nim" name="nim" required>
+                    <label for="program_studi">Program Studi:</label>
+                    <select id="program_studi" name="program_studi" required>
+                        <option value="TI">Teknik Informatika</option>
+                        <option value="SIB">Sistem Informasi Bisnis</option>
+                        <option value="PPLS">Pengembangan Piranti Lunak Situs</option>
+                    </select>
+                </fieldset>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="reset" class="btn btn-primary" onclick="window.location.href='berandaSuperadmin.html';">Kembali</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
