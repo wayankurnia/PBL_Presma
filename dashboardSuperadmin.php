@@ -81,7 +81,7 @@
         } elseif ($pendingDataResult->num_rows > 0) {
             while ($data = $pendingDataResult->fetch_assoc()) {
                 echo "<tr>
-                        <td>" . htmlspecialchars($data['nama']) . "</td>
+                        <td>" . htmlspecialchars($data['nama_mahasiswa']) . "</td>
                         <td>" . htmlspecialchars($data['program_studi']) . "</td>
                         <td>" . htmlspecialchars($data['nama_kompetisi']) . "</td>
                         <td>" . htmlspecialchars($data['tanggal_mulai']) . "</td>

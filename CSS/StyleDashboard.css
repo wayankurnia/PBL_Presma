@@ -293,4 +293,29 @@ body {
   color: #34495E;
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Mengatur jarak antara logo dan judul */
+  align-items: center;
+  padding: 20px;
+  position: relative; /* Tambahkan ini untuk memposisikan anak */
+}
 
+.login-button {
+  position: absolute; /* Menggunakan posisi absolut */
+  top: 20px; /* Jarak dari atas */
+  right: 20px; /* Jarak dari kanan */
+}
+
+.login-button button {
+  padding: 10px 20px; /* Tambahkan padding untuk tombol */
+  background-color: #3946a2; /* Warna latar belakang tombol */
+  color: white; /* Warna teks tombol */
+  border: none; /* Menghilangkan border */
+  border-radius: 5px; /* Membuat sudut tombol melengkung */
+  cursor: pointer; /* Mengubah kursor saat hover */
+}
+
+.login-button button:hover {
+  background-color: #2c3e50; /* Warna latar belakang saat hover */
+}

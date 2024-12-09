@@ -12,8 +12,8 @@
             <img src="gambar/polinema.png" alt="Logo 1" class="logo">
             <img src="gambar/jti.png" alt="Logo 2" class="logo">
             <div class="header2-container">
-                <h1>DAFTAR PRESTASI TERVERIFIKASI 🎓</h1>
-                <div class="login-button" style="float: right;">
+                <h1>PRESTASI MAHASISWA🎓</h1>
+                <div class="login-button">
                     <button onclick="window.location.href='login.html';">LOGIN</button>
                 </div>
             </div>

@@ -1,14 +1,11 @@
 <?php
-$host = 'localhost'; 
-$db = 'prestasi_mahasiswa';
-$user = 'root'; 
-$pass = ''; 
-
-// Koneksi ke database
-$conn = new mysqli($host, $user, $pass, $db);
-
-// Cek koneksi
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
+$host = "LAPTOP-NR8UTQ4Q"; 
+$connInfo = array("Database" => "prestasi_mahasiswa");
+$conn = sqlsrv_connect($host, $connInfo);
+if ($conn) {
+echo "Koneksi berhasil.<br />";
+} else {
+echo "Koneksi Gagal";
+die (print_r(sqlsrv_errors(), true));
 }
 ?>

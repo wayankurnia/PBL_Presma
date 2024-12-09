@@ -10,17 +10,22 @@ include 'config.php';
 
 // Ambil data prestasi untuk user yang sedang login
 $query = "SELECT * FROM prestasi WHERE user_id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $_SESSION['user_id']);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = sqlsrv_prepare($conn, $query, array($_SESSION['user_id']));
+
+if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true)); // Tampilkan error jika prepare gagal
+}
+
+if (!sqlsrv_execute($stmt)) {
+    die(print_r(sqlsrv_errors(), true)); // Tampilkan error jika execute gagal
+}
 
 // Inisialisasi variabel
 $totalPrestasi = 0;
 $totalPoin = 0;
 
 // Hitung total prestasi dan poin
-while ($row = $result->fetch_assoc()) {
+while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     $totalPrestasi++;
 
     // Hitung poin berdasarkan tingkat kompetisi
@@ -57,7 +62,7 @@ while ($row = $result->fetch_assoc()) {
         case 'Harapan 1':
             $totalPoin += 3;
             break;
-        case 'Harapan 2':
+ case 'Harapan 2':
             $totalPoin += 2;
             break;
         case 'Harapan 3':
@@ -69,6 +74,23 @@ while ($row = $result->fetch_assoc()) {
 // Set nilai ke dalam session
 $_SESSION['jumlahPrestasi'] = $totalPrestasi;
 $_SESSION['totalPoin'] = $totalPoin;
+
+// Ambil jumlah data terverifikasi, pending, dan ditolak
+$verifiedQuery = "SELECT COUNT(*) as count FROM prestasi WHERE user_id = ? AND status = 'verified'";
+$pendingQuery = "SELECT COUNT(*) as count FROM prestasi WHERE user_id = ? AND status = 'proses'";
+$rejectedQuery = "SELECT COUNT(*) as count FROM prestasi WHERE user_id = ? AND status = 'rejected'";
+
+$verifiedStmt = sqlsrv_prepare($conn, $verifiedQuery, array($_SESSION['user_id']));
+$pendingStmt = sqlsrv_prepare($conn, $pendingQuery, array($_SESSION['user_id']));
+$rejectedStmt = sqlsrv_prepare($conn, $rejectedQuery, array($_SESSION['user_id']));
+
+sqlsrv_execute($verifiedStmt);
+sqlsrv_execute($pendingStmt);
+sqlsrv_execute($rejectedStmt);
+
+$verifiedResult = sqlsrv_fetch_array($verifiedStmt, SQLSRV_FETCH_ASSOC);
+$pendingResult = sqlsrv_fetch_array($pendingStmt, SQLSRV_FETCH_ASSOC);
+$rejectedResult = sqlsrv_fetch_array($rejectedStmt, SQLSRV_FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -96,72 +118,56 @@ $_SESSION['totalPoin'] = $totalPoin;
     <!-- Content -->
     <div class="content">
         <div class="header">
-            <h1>Beranda</h1>
+            <h1>Dashboard Mahasiswa</h1>
             <img src="jti.png" alt="Logo JTI">
         </div>
         <div class="main">
-            <!-- Info Box -->
-            <div class="info-box">
-                <div class="cards-container">
-                    <div class="card">
-                        <i class="fas fa-trophy"></i>
-                        <h4 id="peringkat">1</h4> <!-- Placeholder untuk peringkat -->
-                        <p>Peringkat</p>
+            <div class="status-background">
+                <div class="status-boxes">
+                    <div class="status-box">
+                        <h2><?php echo $verifiedResult['count']; ?></h2>
+                        <h3>Terverifikasi</h3>
                     </div>
-                    <div class="card">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h4 id="jumlahPrestasi"><?php echo $_SESSION['jumlahPrestasi']; ?></h4>
-                        <p>Jumlah Prestasi</p>
+                    <div class="status-box">
+                        <h2><?php echo $pendingResult['count']; ?></h2>
+                        <h3>Pending</h3>
                     </div>
-                    <div class="card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h4 id="poin"><?php echo $_SESSION['totalPoin']; ?></h4>
-                        <p>Poin</p>
+                    <div class="status-box">
+                        <h2><?php echo $rejectedResult['count']; ?></h2>
+                        <h3>Ditolak</h3>
                     </div>
                 </div>
             </div>
 
             <!-- Riwayat Prestasi -->
             <div class="info-box">
-                <h2>Riwayat Prestasi Mahasiswa</h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nama Kompetisi</th>
-                            <th>Jenis Kompetisi</th>
-                            <th>Tanggal Mulai</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        // Ambil ulang data prestasi untuk riwayat
-                        $stmt->execute();
-                        $result = $stmt->get_result();
+                <h2>Riwayat Prestasi</h2>
+                <table>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Nama Prestasi</th>
+                        <th>Tingkat Kompetisi</th>
+                        <th>Juara</th>
+                    </tr>
+                    <?php
+                    // Ambil data riwayat prestasi
+                    $queryRiwayat = "SELECT * FROM prestasi WHERE user_id = ?";
+                    $stmtRiwayat = sqlsrv_prepare($conn, $queryRiwayat, array($_SESSION['user_id']));
+                    sqlsrv_execute($stmtRiwayat);
 
-                        if ($result->num_rows > 0):
-                            while ($row = $result->fetch_assoc()): ?>
-                                <tr>
-                                    <td><?php echo $row['nama_kompetisi']; ?></td>
-                                    <td><?php echo $row['jenis_kompetisi']; ?></td>
-                                    <td><?php echo $row['tanggal_mulai']; ?></td>
-                                    <td><label class="badge badge-success"><?php echo $row['status']; ?></label></td>
-                                </tr>
-                            <?php endwhile;
-                        else: ?>
-                            <tr>
-                                <td colspan="4">Tidak ada data yang ditemukan.</td>
-                            </tr>
-                        <?php endif; ?>
-                    </tbody>
+                    while ($rowRiwayat = sqlsrv_fetch_array($stmtRiwayat, SQLSRV_FETCH_ASSOC)) {
+                        echo "<tr>
+                                <td>" . date_format($rowRiwayat['tanggal'], 'd-m-Y') . "</td>
+                                <td>" . $rowRiwayat['nama_prestasi'] . "</td>
+                                  <td>" . htmlspecialchars($rowRiwayat['tingkat_kompetisi']) . "</td>
+                                </td>
+                                <td>" . $rowRiwayat['juara'] . "</td>
+                              </tr>";
+                    }
+                    ?>
                 </table>
             </div>
         </div>
     </div>
 </body>
 </html>
-
-<?php
-// Tutup koneksi
-$conn->close();
-?>

@@ -8,60 +8,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Query untuk memeriksa pengguna
     $query = "SELECT * FROM users WHERE username = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt = sqlsrv_prepare($conn, $query, array($username));
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+    if( sqlsrv_execute($stmt) ) {
+        $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
-        // Verifikasi password
-        if ($password === $user['password']) {
-            // Set session
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['user_type'] = $user['user_type'];
+        if ($result) {
+            // Verifikasi password
+            if ($password === $result['password']) {
+                // Set session
+                $_SESSION['user_id'] = $result['id'];
+                $_SESSION['username'] = $result['username'];
+                $_SESSION['user_type'] = $result['user_type'];
 
-            // Ambil informasi mahasiswa jika user_type adalah 'mahasiswa'
-            if ($user['user_type'] === 'mahasiswa') {
-                $mahasiswaQuery = "SELECT * FROM mahasiswa WHERE user_id = ?";
-                $mahasiswaStmt = $conn->prepare($mahasiswaQuery);
-                $mahasiswaStmt->bind_param("i", $user['id']);
-                $mahasiswaStmt->execute();
-                $mahasiswaResult = $mahasiswaStmt->get_result();
+                // Ambil informasi mahasiswa jika user_type adalah 'mahasiswa'
+                if ($result['user_type'] === 'mahasiswa') {
+                    $mahasiswaQuery = "SELECT * FROM mahasiswa WHERE user_id = ?";
+                    $mahasiswaStmt = sqlsrv_prepare($conn, $mahasiswaQuery, array($result['id']));
 
-                if ($mahasiswaResult->num_rows > 0) {
-                    $mahasiswa = $mahasiswaResult->fetch_assoc();
-                    $_SESSION['nim'] = $mahasiswa['nim'];
-                    $_SESSION['prodi'] = $mahasiswa['prodi'];
+                    if (sqlsrv_execute($mahasiswaStmt)) {
+                        $mahasiswaResult = sqlsrv_fetch_array($mahasiswaStmt, SQLSRV_FETCH_ASSOC);
+
+                        if ($mahasiswaResult) {
+                            $_SESSION['nim'] = $mahasiswaResult['nim'];
+                            $_SESSION['prodi'] = $mahasiswaResult['prodi'];
+                        }
+                    }
                 }
-            }
 
-            // Redirect berdasarkan user_type
-            switch ($user['user_type']) {
-                case 'admin':
-                    header("Location: berandaAdmin.php");
-                    break;
-                case 'superadmin':
-                    header("Location: dashboardSuperadmin.php");
-                    break;
-                case 'dosen':
-                        header("Location: berandaDosen.html");
+                // Redirect berdasarkan user_type
+                switch ($result['user_type']) {
+                    case 'admin':
+                        header("Location: berandaAdmin.html");
                         break;
-                case 'mahasiswa':
-                    header("Location: dashboardMahasiswa.php"); // Pastikan ini adalah file dashboard mahasiswa
-                    break;
-                default:
-                    echo "User  type tidak dikenali.";
-                    exit();
+                    case 'superadmin':
+                        header("Location: dashboardSuperadmin.php");
+                        break;
+                    case 'mahasiswa':
+                        header("Location: dashboardMahasiswa.php"); // Pastikan ini adalah file dashboard mahasiswa
+                        break;
+                    default:
+                        echo "User type tidak dikenali.";
+                        exit();
+                }
+                exit();
+            } else {
+                echo "Username atau password salah.";
             }
-            exit();
         } else {
             echo "Username atau password salah.";
         }
     } else {
-        echo "Username atau password salah.";
+        echo "Terjadi kesalahan saat melakukan query.";
     }
 }
 ?>

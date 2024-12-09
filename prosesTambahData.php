@@ -7,17 +7,7 @@ ini_set('display_errors', 1);
 session_start();
 
 // Koneksi ke database
-$host = 'localhost'; 
-$db = 'prestasi_mahasiswa';
-$user = 'root'; 
-$pass = ''; 
-
-$conn = new mysqli($host, $user, $pass, $db);
-
-// Cek koneksi
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
-}
+include 'config.php'; // Pastikan ini mengarah ke file config.php yang benar
 
 // Pastikan mahasiswa sudah login
 if (!isset($_SESSION['user_id'])) {
@@ -59,18 +49,24 @@ move_uploaded_file($_FILES['file_poster']['tmp_name'], $target_dir . $file_poste
 
 // Query untuk menyimpan data ke tabel prestasi dengan status 'proses'
 $sql = "INSERT INTO prestasi (user_id, nama, program_studi, dosen, peran_pembimbing, peran, jenis_kompetisi, tingkat_kompetisi, nama_kompetisi, juara, tanggal_mulai, tanggal_selesai, foto_kegiatan, file_sertifikat, file_poster, status) 
-VALUES ('$user_id', '$nama', '$program_studi', '$dosen', '$peran_pembimbing', '$peran', '$jenis_kompetisi', '$tingkat_kompetisi', '$nama_kompetisi', '$juara', '$tanggal_mulai', '$tanggal_selesai', '$foto_kegiatan', '$file_sertifikat', '$file_poster', 'proses')";
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'proses')";
 
-// Debugging: Tampilkan query
-echo "Query: " . $sql . "<br>"; // Hapus atau komentar baris ini setelah debugging
+// Siapkan statement
+$stmt = sqlsrv_prepare($conn, $sql, array($user_id, $nama, $program_studi, $dosen, $peran_pembimbing, $peran, $jenis_kompetisi, $tingkat_kompetisi, $nama_kompetisi, $juara, $tanggal_mulai, $tanggal_selesai, $foto_kegiatan, $file_sertifikat, $file_poster));
 
-if ($conn->query($sql) === TRUE) {
-    // Redirect to success page
-    header("Location: success.php");
-    exit(); // Make sure to exit after the redirect
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true)); // Tampilkan error jika prepare gagal
 }
 
-$conn->close();
+// Eksekusi statement
+if (sqlsrv_execute($stmt)) {
+    echo "Data berhasil disimpan!";
+    // Redirect atau tampilkan pesan sukses
+} else {
+    echo "Error: " . print_r(sqlsrv_errors(), true);
+}
+
+// Tutup statement dan koneksi
+sqlsrv_free_stmt($stmt);
+sqlsrv_close($conn);
 ?>
