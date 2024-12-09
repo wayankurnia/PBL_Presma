@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Pusat</title>
+    <link rel="stylesheet" href="CSS/tambahDataPusat.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>SIPRESMA</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
+        <h3>Vit Zuraida, S.Kom., M.Kom.</h3>
+        <p>Superadmin</p>
+        <a href="dashboardSuperadmin.php" class="menu-link">Dashboard</a>
+        <a href="tambahDataPusat.html" class="menu-link">Tambah Data</a>
+        <a href="gantipw.html" class="menu-link">Edit Password</a>
+        <a href="login.html" class="menu-link">Keluar</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main class="content">
+            <h1>Tambah Data Dosen dan Mahasiswa</h1>
+            <form action="tambahDataPusat.php" method="POST">
+                <fieldset>
+                    <legend>Pilih Tipe Data</legend>
+                    <label>
+                        <input type="checkbox" name="data_type[]" value="dosen"> Dosen
+                    </label>
+                    <label>
+                        <input type="checkbox" name="data_type[]" value="mahasiswa"> Mahasiswa
+                    </label>
+                </fieldset>
+
+                <fieldset id="dosenFields" style="display: none;">
+                    <legend>Data Dosen</legend>
+                    <label for="nama_dosen">Nama Dosen:</label>
+                    <input type="text" id="nama_dosen" name="nama_dosen">
+                    <label for="nidn">NIDN:</label>
+                    <input type="text" id="nidn" name="nidn">
+                </fieldset>
+
+                <fieldset id="mahasiswaFields" style="display: none;">
+                    <legend>Data Mahasiswa</legend>
+                    <label for="nama_mahasiswa">Nama Mahasiswa:</label>
+                    <input type="text" id="nama_mahasiswa" name="nama_mahasiswa">
+                    <label for="nim">NIM:</label>
+                    <input type="text" id="nim" name="nim">
+                    <label for="program_studi">Program Studi:</label>
+                    <select id="program_studi" name="program_studi">
+                        <option value="TI">Teknik Informatika</option>
+                        <option value="SIB">Sistem Informasi Bisnis</option>
+                        <option value="PPLS">Pengembangan Piranti Lunak Situs</option>
+                    </select>
+                </fieldset>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='dashboardSuperadmin.php';">Kembali</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        const dataTypeCheckboxes = document.querySelectorAll('input[name="data_type[]"]');
+        const dosenFields = document.getElementById('dosenFields');
+        const mahasiswaFields = document.getElementById('mahasiswaFields');
+
+        dataTypeCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                if (checkbox.value === 'dosen' && checkbox.checked) {
+                    dosenFields.style.display = 'block';
+                } else if (checkbox.value === 'dosen' && !checkbox.checked) {
+                    dosenFields.style.display = 'none';
+                }
+
+                if (checkbox.value === 'mahasiswa' && checkbox.checked) {
+                    mahasiswaFields.style.display = 'block';
+                } else if (checkbox.value === 'mahasiswa' && !checkbox.checked) {
+                    mahasiswaFields.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

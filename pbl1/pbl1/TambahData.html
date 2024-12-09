@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPRESMA Dashboard</title>
+    <link rel="stylesheet" href="CSS/StyleTambahData.css">
+</head>
+<body>
+    <div class="container">
+        <main class="content">
+            <h1>Tambah Data Prestasi</h1>
+            <form class="form" method="POST" action="prosesTambahData.php" enctype="multipart/form-data">
+                <!-- Data Mahasiswa -->
+                <fieldset>
+                    <legend>Data Mahasiswa</legend>
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" class="form-control" required>
+                    <label for="program-studi">Program Studi</label>
+                    <select name="program_studi" class="form-control" required>
+                        <option value="TI">Teknik Informatika</option>
+                        <option value="SIB">Sistem Informasi Bisnis</option>
+                        <option value="PPLS">Pengembangan Piranti Lunak Situs</option>
+                    </select>
+                </fieldset>
+
+                <!-- Data Pembimbing -->
+                <fieldset>
+                    <legend>Data Pembimbing</legend>
+                    <label for="dosen">Dosen Pembimbing</label>
+                    <input type="text" id="dosen" name="dosen" class="form-control" required>
+                    <label for="peran-pembimbing">Peran Pembimbing</label>
+                    <input type="text" id="peran-pembimbing" name="peran_pembimbing" class="form-control" required>
+                </fieldset>
+
+                <!-- Data Prestasi -->
+                <fieldset>
+                    <legend>Data Prestasi</legend>
+                    <label for="peran">Peran</label>
+                    <select name="peran" class="form-control" required>
+                        <option value="Ketua">Ketua</option>
+                        <option value="Anggota">Anggota</option>
+                        <option value="Personal">Personal</option>
+                    </select>
+                    <label for="jenis-kompetisi">Jenis Kompetisi</label>
+                    <input type="text" id="jenis-kompetisi" name="jenis_kompetisi" class="form-control" required>
+                    <label for="tingkat-kompetisi">Tingkat Kompetisi</label>
+                    <select name="tingkat_kompetisi" class="form-control" required>
+                        <option value="kabupaten">Kabupaten</option>
+                        <option value="provinsi">Provinsi</option>
+                        <option value="nasional">Nasional</option>
+                        <option value="internasional">Internasional</option>
+                    </select>
+                    <label for="nama-kompetisi">Nama Kompetisi</label>
+                    <input type="text" id="nama-kompetisi" name="nama_kompetisi" class="form-control" required>
+                    <label for="juara">Juara</label>
+                    <input type="text" id="juara" name="juara" class="form-control" required>
+                    <label for="tanggal-mulai">Tanggal Mulai</label>
+                    <input type="date" id="tanggal-mulai" name="tanggal_mulai" class="form-control" required>
+                    <label for="tanggal-selesai">Tanggal Selesai</label>
+                    <input type="date" id="tanggal-selesai" name="tanggal_selesai" class="form-control" required>
+                    <label for="foto_kegiatan">Foto Kegiatan</label>
+                    <input type="file" name="foto_kegiatan" id="foto_kegiatan" required>
+                    <label for="file_sertifikat">File Sertifikat</label>
+                    <input type="file" name="file_sertifikat" id="file_sertifikat" required>
+                    <label for="file_poster">File Poster</label>
+                    <input type="file" name="file_poster" id="file_poster" required>
+                </fieldset>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="reset" class ="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
