@@ -46,7 +46,7 @@
                     <input type="text" id="jenis-kompetisi" name="jenis_kompetisi" class="form-control" required>
                     <label for="tingkat-kompetisi">Tingkat Kompetisi</label>
                     <select name="tingkat_kompetisi" class="form-control" required>
-                        <option value="kabupaten">Kabupaten</option>
+                        <option value="kabupaten">Kabupaten/Kota</option>
                         <option value="provinsi">Provinsi</option>
                         <option value="nasional">Nasional</option>
                         <option value="internasional">Internasional</option>
@@ -69,7 +69,11 @@
 
                 <div class="form-buttons">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="reset" class ="btn btn-secondary">Reset</button>
+                </div>
+                <div class="form-buttons2">
+                    <button type="submit" class ="btn btn-primary">Kirim</button>
+                    <button type="reset" class="btn btn-primary"  onclick="window.location.href='dashboardMahasiswa.php';">Kembali</button>
+                </div>
                 </div>
             </form>
         </main>

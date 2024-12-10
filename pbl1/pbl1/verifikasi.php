@@ -14,15 +14,15 @@ if (isset($_POST['id'])) {
 
     // Update status menjadi 'verified'
     $query = "UPDATE prestasi SET status = 'verified' WHERE id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $id);
+    $params = array($id);
+    $stmt = sqlsrv_query($conn, $query, $params);
 
-    if ($stmt->execute()) {
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true)); // Tampilkan error jika query gagal
+    } else {
         // Redirect ke dashboard superadmin setelah berhasil
         header("Location: dashboardSuperadmin.php?message=Data berhasil diverifikasi.");
         exit();
-    } else {
-        echo "Terjadi kesalahan saat memverifikasi data: " . $stmt->error;
     }
 } else {
     echo "ID tidak ditemukan.";

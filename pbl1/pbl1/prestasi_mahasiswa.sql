@@ -7,7 +7,7 @@ password VARCHAR(225),
 user_type VARCHAR(20) NOT NULL CHECK (user_type IN ('superadmin', 'mahasiswa', 'dosen', 'admin'))
 );
 
-DROP TABLE IF EXISTS users;
+
 
 SELECT * FROM users;
 
@@ -45,3 +45,26 @@ ADD user_id INT NOT NULL;
 ALTER TABLE prestasi 
 ADD status VARCHAR(10) NOT NULL DEFAULT 'proses' 
 CHECK (status IN ('proses', 'verified', 'rejected'));
+
+SELECT tanggal FROM prestasi WHERE user_id = <user_id>;
+
+
+CREATE TABLE mahasiswa (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    user_id INT NOT NULL, -- Menghubungkan dengan tabel users
+    nim VARCHAR(20) NOT NULL,
+    nama VARCHAR(100) NOT NULL,
+    prodi VARCHAR(50) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) -- Menghubungkan dengan tabel users
+);
+
+CREATE TABLE dosen (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    nidn VARCHAR(20) NOT NULL,
+    nama VARCHAR(100) NOT NULL
+);
+
+
+INSERT INTO mahasiswa (user_id, nim, nama, prodi)
+VALUES (2, 2341750023, 'Syaqira', 'sib' ),
+	   (3, 2341760034, 'Eksa', 'TI');

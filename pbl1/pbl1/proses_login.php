@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "SELECT * FROM users WHERE username = ?";
     $stmt = sqlsrv_prepare($conn, $query, array($username));
 
-    if( sqlsrv_execute($stmt) ) {
+    if (sqlsrv_execute($stmt)) {
         $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
         if ($result) {
@@ -39,13 +39,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Redirect berdasarkan user_type
                 switch ($result['user_type']) {
                     case 'admin':
-                        header("Location: berandaAdmin.html");
+                        header("Location: dashboardAdmin.php");
                         break;
                     case 'superadmin':
                         header("Location: dashboardSuperadmin.php");
                         break;
                     case 'mahasiswa':
                         header("Location: dashboardMahasiswa.php"); // Pastikan ini adalah file dashboard mahasiswa
+                        break;
+                    case 'dosen':
+                        header("Location: berandaDosen.html");
                         break;
                     default:
                         echo "User type tidak dikenali.";

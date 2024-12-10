@@ -14,13 +14,15 @@ if (isset($_GET['id'])) {
 
     // Ambil data prestasi berdasarkan ID
     $query = "SELECT * FROM prestasi WHERE id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $params = array($id);
+    $stmt = sqlsrv_query($conn, $query, $params);
 
-    if ($result->num_rows > 0) {
-        $data = $result->fetch_assoc();
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true)); // Tampilkan error jika query gagal
+    }
+
+    if ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+        // Data berhasil diambil
     } else {
         echo "Data tidak ditemukan.";
         exit();
@@ -67,8 +69,8 @@ if (isset($_GET['id'])) {
                 </div>
             </fieldset>
 
-            <!-- Data Pembimbing -->
-            <fieldset>
+                        <!-- Data Pembimbing -->
+                        <fieldset>
                 <legend>Data Dosen Pembimbing</legend>
                 <div class="data-row">
                     <span class="data-label">Nama:</span>
@@ -81,29 +83,29 @@ if (isset($_GET['id'])) {
             </fieldset>
 
             <!-- Data Prestasi -->
-            <fieldset>
-                <legend>Data Prestasi</legend>
-                <div class="data-row">
-                    <span class="data-label">Nama Kompetisi:</span>
-                    <span class="data-value"><?php echo htmlspecialchars($data['nama_kompetisi']); ?></span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Jenis Kompetisi:</span>
-                    <span class="data-value"><?php echo htmlspecialchars($data['jenis_kompetisi']); ?></span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Tingkat Kompetisi:</span>
-                    <span class="data-value"><?php echo htmlspecialchars($data['tingkat_kompetisi']); ?></span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Tanggal Mulai:</span>
-                    <span class="data-value"><?php echo htmlspecialchars($data['tanggal_mulai']); ?></span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Tanggal Selesai:</span>
-                    <span class="data-value"><?php echo htmlspecialchars($data['tanggal_selesai']); ?></span>
-                </div>
-            </fieldset>
+<fieldset>
+    <legend>Data Prestasi</legend>
+    <div class="data-row">
+        <span class="data-label">Nama Kompetisi:</span>
+        <span class="data-value"><?php echo htmlspecialchars($data['nama_kompetisi']); ?></span>
+    </div>
+    <div class="data-row">
+        <span class="data-label">Jenis Kompetisi:</span>
+        <span class="data-value"><?php echo htmlspecialchars($data['jenis_kompetisi']); ?></span>
+    </div>
+    <div class="data-row">
+        <span class="data-label">Tingkat Kompetisi:</span>
+        <span class="data-value"><?php echo htmlspecialchars($data['tingkat_kompetisi']); ?></span>
+    </div>
+    <div class="data-row">
+        <span class="data-label">Tanggal Mulai:</span>
+        <span class="data-value"><?php echo htmlspecialchars($data['tanggal_mulai']->format('d-m-Y')); ?></span>
+    </div>
+    <div class="data-row">
+        <span class="data-label">Tanggal Selesai:</span>
+        <span class="data-value"><?php echo htmlspecialchars($data['tanggal_selesai']->format('d-m-Y')); ?></span>
+    </div>
+</fieldset>
 
             <!-- Tombol Verifikasi -->
             <div class="action-buttons">

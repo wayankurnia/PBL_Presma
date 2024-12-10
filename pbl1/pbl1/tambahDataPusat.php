@@ -19,9 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Query untuk menyimpan data dosen
         $sql_dosen = "INSERT INTO dosen (nidn, nama) VALUES (?, ?)";
-        $stmt_dosen = $conn->prepare($sql_dosen);
-        $stmt_dosen->bind_param("ss", $nidn, $nama_dosen);
-        if ($stmt_dosen->execute()) {
+        $params_dosen = array($nidn, $nama_dosen);
+        $stmt_dosen = sqlsrv_query($conn, $sql_dosen, $params_dosen);
+        
+        if ($stmt_dosen) {
             $success = true; // Tandai bahwa data dosen berhasil disimpan
         }
     }
@@ -34,10 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user_id = $_SESSION['user_id']; // Ambil user_id dari session
 
         // Query untuk menyimpan data mahasiswa
-        $sql_mahasiswa = "INSERT INTO mahasiswa (user_id, nama, nim, prodi) VALUES (?, ?, ?, ?)";
-        $stmt_mahasiswa = $conn->prepare($sql_mahasiswa);
-        $stmt_mahasiswa->bind_param("isss", $user_id, $nama_mahasiswa, $nim, $prodi);
-        if ($stmt_mahasiswa->execute()) {
+        $sql_mahasiswa = "INSERT INTO mahasiswa (user_id, nim, nama, prodi) VALUES (?, ?, ?, ?)";
+        $params_mahasiswa = array($user_id, $nim, $nama_mahasiswa, $prodi);
+        $stmt_mahasiswa = sqlsrv_query($conn, $sql_mahasiswa, $params_mahasiswa);
+        
+        if ($stmt_mahasiswa) {
             $success = true; // Tandai bahwa data mahasiswa berhasil disimpan
         }
     }
