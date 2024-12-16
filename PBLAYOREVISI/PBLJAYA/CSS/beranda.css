@@ -1,0 +1,157 @@
+/* Reset default margin, padding, and box-sizing for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Header Styling */
+header {
+    background-color: #3946a2;
+    padding: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Container for logos */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-right: 20px; /* Spacing between logos */
+}
+
+/* Header Text and Button */
+.header2-container {
+    text-align: center;
+    color: white;
+}
+
+.header2-container h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.header2-container .login-button button {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.header2-container .login-button button:hover {
+    background-color: #ddd;
+}
+
+/* Main Section */
+main {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Prestasi Section */
+.prestasi h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #3946a2;
+    color: white;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(even) td {
+    background-color: #f1f1f1;
+}
+
+tr:hover td {
+    background-color: #ddd;
+}
+
+/* Info Lomba Section */
+.info-lomba {
+    margin-top: 40px;
+}
+
+.info-lomba h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.lomba-container {
+    display: flex; /* Mengubah dari grid ke flex untuk horizontal */
+    overflow-x: auto; /* Mengaktifkan scroll horizontal */
+    white-space: nowrap; /* Mencegah item membungkus ke baris berikutnya */
+    padding: 10px 0; /* Padding atas dan bawah */
+}
+
+.lomba-item {
+    background-color: #f0f0f0;
+    padding: 30px; /* Menambah padding untuk ukuran box yang lebih besar */
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 0 0 auto; /* Mengatur agar item tidak mengembang */
+    width: 200px; /* Lebar tetap untuk setiap box */
+    margin-right: 20px; /* Jarak antar item */
+}
+
+.lomba-item:last-child {
+    margin-right: 0; /* Menghilangkan margin kanan pada box terakhir */
+}
+
+.lomba-item:hover {
+    background-color: #ddd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .lomba-item {
+        width: 150px; /* Lebar box lebih kecil pada layar kecil */
+    }
+}
+
+@media (max-width: 480px) {
+    .lomba-item {
+        width: 100px; /* Lebar box lebih kecil pada layar sangat kecil */
+    }
+}

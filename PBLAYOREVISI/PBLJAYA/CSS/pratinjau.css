@@ -1,0 +1,169 @@
+/* Reset Styles */
+body, h1, h2, h3, p, label, input, button, legend {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #3946a2;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: 100vh; /* Pastikan sidebar mengisi tinggi penuh */
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sidebar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #ffffff;
+}
+
+.sidebar h3 {
+    font-size: 1rem;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.sidebar p {
+    font-size: 0.9rem;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.sidebar a {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 12px 0;
+    margin: 10px 0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #2d3693;
+}
+
+.sidebar .menu-link:last-child {
+    margin-top: auto; /* Jarak untuk tombol keluar */
+}
+
+/* Container */
+.container {
+    margin-left: 250px; /* Adjusted for sidebar width */
+    padding: 20px;
+    background-color: #ffffff;
+    width: calc(100% - 250px); /* Adjusted for sidebar width */
+    min-height: 100vh;
+}
+
+/* Content */
+.content {
+    width: 100%; /* Full width */
+    max-width: 600px; /* Limit max width */
+}
+
+/* Form Styles */
+fieldset {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+}
+
+legend {
+    font-size: 16px;
+    font-weight: bold;
+    color: #35479e;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.data-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.data-value {
+    color: #333;
+}
+
+/* Container untuk semua tombol */
+.action-buttons {
+    display: flex; /* Gunakan flexbox untuk menata tombol dalam satu baris */
+    justify-content: flex-end; /* Ratakan tombol ke kanan */
+    align-items: center; /* Sejajarkan tombol secara vertikal */
+    gap: 10px; /* Tambahkan jarak antar tombol */
+    margin-top: 20px;
+}
+
+/* Gaya tombol Verifikasi */
+.btn-verify {
+    background-color: #00d76c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+
+.btn-verify:hover {
+    background-color: #8bdfad;
+}
+
+/* Gaya tombol Tolak */
+.btn-reject {
+    background-color: #d70000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+
+.btn-reject:hover {
+    background-color: #e65959;
+}
+
+/* Gaya tombol Kembali */
+.btn-back {
+    background-color: #4017e1;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #62a8f3;
+}

@@ -1,0 +1,188 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: #f9f9f9;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #3946a2;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sidebar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #ffffff;
+}
+
+.sidebar h3 {
+    font-size: 1rem;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.sidebar p {
+    font-size: 0.9rem;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.sidebar a {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 12px 0;
+    margin: 10px 0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #2d3693;
+}
+
+.sidebar .menu-link:last-child {
+    margin-top: 20px;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    flex: 1;
+}
+
+.header img {
+    width: 80px;
+}
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+/* Container untuk 3 kotak pencarian */
+.search-box-container {
+    display: flex;
+    gap: 15px; /* Jarak antar kotak */
+    background-color: #f0f3fd; /* Background kotak besar */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.search-box {
+    flex: 1;
+}
+
+.search-box label {
+    font-size: 0.9rem;
+    color: #3946a2;
+}
+
+select, input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #3946a2;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+select:focus, input[type="date"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(57, 70, 162, 0.5);
+}
+
+/* Tombol cari */
+.search-button {
+    margin-top: 50px; /* Geser tombol lebih ke bawah */
+    display: flex;
+    justify-content: center; /* Posisikan tombol di tengah secara horizontal */
+    align-items: center; /* Pastikan elemen di tengah secara vertikal */
+}
+
+#btnCari {
+    padding: 12px 25px; /* Ukuran lebih besar untuk tombol */
+    background-color: #1e40af; /* Biru lebih gelap */
+    color: white;
+    font-size: 1rem; /* Ukuran font lebih besar */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#btnCari:hover {
+    background-color: #1d4ed8; /* Warna hover biru lebih terang */
+}
+
+
+.section-title {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3946a2;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3946a2;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+    .search-box-container {
+        flex-direction: column;
+    }
+}
+
